@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Arnab's Portfolio | Academic & Industry Leadership</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --bg-main: #020617; /* Deepest blue/black */
+            --bg-card: rgba(15, 23, 42, 0.6); /* Translucent Navy */
+            --border-card: rgba(255, 255, 255, 0.08);
+            --accent: #3b82f6; /* Powerlytics Blue */
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --glow-light: rgba(59, 130, 246, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Glow in Background */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--glow-light);
+            border-radius: 50%;
+            filter: blur(100px);
+            top: -100px;
+            right: -100px;
+            z-index: -1;
+        }
+
+        a { text-decoration: none; color: inherit; transition: color 0.2s; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header/Nav --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid var(--border-card);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.5px; }
+        .logo span { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 30px; font-size: 0.9rem; font-weight: 500; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--text-primary);
+            color: var(--bg-main);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background-color: #e2e8f0;
+        }
+
+        /* --- Global Grid Styles (The Powerlytics Feel) --- */
+        section { padding: 100px 0; }
+        
+        .section-header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .bento-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            padding: 30px;
+            transition: border-color 0.3s, transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .bento-card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .bento-card .icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .bento-card h3 { font-size: 1.25rem; font-weight: 700; }
+        .bento-card p { color: var(--text-secondary); font-size: 0.95rem; }
+        .bento-card .date { font-family: monospace; font-size: 0.85rem; color: #64748b; }
+
+        /* Publication Specifics */
+        .pub-list { display: flex; flex-direction: column; gap: 20px; }
+        .pub-item {
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-card);
+        }
+        .pub-item:last-child { border-bottom: none; }
+        .pub-type {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 5px;
+            display: block;
+        }
+        .pub-title { font-weight: 600; font-size: 1rem; color: var(--text-primary); }
+        .pub-authors { color: var(--text-secondary); font-size: 0.9rem; margin-top: 5px;}
+
+        /* --- Footer --- */
+        footer {
+            padding: 50px 0;
+            border-top: 1px solid var(--border-card);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 2.8rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Mobile Menu implementation needed here */
+            .hero h1 { font-size: 2.2rem; }
+            .bento-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Dr. Arnab<span>.Sci</span></div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="status-badge">
+                <i class="ph ph-lightning ph-fill"></i> Available for Collaboration
+            </div>
+            <h1>Researching the future<br> of AI in Health.</h1>
+            <p>I specialize in bridging the gap between theoretical machine learning and practical application within complex biological systems.</p>
+            <a href="mailto:arnab.scientist@email.com" class="btn">
+                Contact Me <i class="ph ph-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2>Leadership Roles</h2>
+            </div>
+            <div class="bento-grid">
+                
+                <div class="bento-card">
+                    <div class="date">2021 — PRESENT</div>
+                    <div class="icon"><i class="ph ph-chalkboard-teacher"></i></div>
+                    <h3>Vice-Rector, Research</h3>
+                    <p>Universidad de León. Strategic planning for university research initiatives.</p>
+                </div>
+
+                <div class="bento-card">
+                    <div class="date">2019 — PRESENT</div>
+                    <div class="icon"><i class="ph ph-brain"></i></div>
+                    <h3>Associate Professor</h3>
+                    <p>Department of Engineering. Teaching advanced AI and neural modeling.</p>
+                </div>
+
+                <div class="bento-card">
+                    <div class="date">2022</div>
+                    <div class="icon"><i class="ph ph-users-four"></i></div>
+                    <h3>Conference Chair</h3>
+                    <p>Organizer of the 20th Int'l Symposium on Neural Computing.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="publications">
+        <div class="container">
+            <div class="section-header">
+                <h2>Key Publications</h2>
+            </div>
+            
+            <div class="bento-card pub-list">
+                
+                <div class="pub-item">
+                    <span class="pub-type">JCR Indexed / 2023</span>
+                    <div class="pub-title">Neural Modeling of Cellular Senescence</div>
+                    <div class="pub-authors">Arnab, J. A. Benitez, et al. | Journal of Neural Computing.</div>
+                </div>
+
+                <div class="pub-item">
+                    <span class="pub-type">Conference / 2023</span>
+                    <div class="pub-title">Deep Learning for Pattern Recognition in Spartan Training</div>
+                    <div class="pub-authors">Arnab. | IEEE CVPR Workshop.</div>
+                </div>
+
+                <div class="pub-item">
+                    <span class="pub-type">Journal Article / 2022</span>
+                    <div class="pub-title">An Ontology of Spartan Race Obstacles</div>
+                    <div class="pub-authors">J. A. Benitez, Arnab. | Data Science Journal.</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Dr. Arnab. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Inspired by the Powerlytics aesthetic.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
